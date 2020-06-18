@@ -25,3 +25,16 @@ sequelize.authenticate()
 const Tag = tag(sequelize, Sequelize);
 const Tutorial = tutorial(sequelize, Sequelize);
 
+Tutorial.belongsToMany(Tag, { 
+  as: 'tags', 
+  through: 'tutorial_tag', 
+  foreignKey: 'tutorialId',
+  otherKey: 'tagId'
+})
+
+Tag.belongsToMany(Tutorial, { 
+  as: 'tutorials', 
+  through: 'tutorial_tag',
+  foreignKey: 'tagId',
+  otherKey: 'tutorialId'
+})
