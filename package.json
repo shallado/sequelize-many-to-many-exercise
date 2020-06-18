@@ -1,0 +1,15 @@
+{
+  "name": "sequelize-many-to-many-exercise",
+  "version": "1.0.0",
+  "description": "Many to many relationship using sequelize",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "shallado",
+  "license": "ISC",
+  "dependencies": {
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.13"
+  }
+}
