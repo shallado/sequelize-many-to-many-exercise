@@ -11,7 +11,7 @@ const {
 
 const sequelize = new Sequelize(database, username, password, {
   host: 'localhost',
-  log: false,
+  logging: false,
   define: {
     underscored: true
   },
@@ -38,3 +38,10 @@ Tag.belongsToMany(Tutorial, {
   foreignKey: 'tagId',
   otherKey: 'tutorialId'
 })
+
+module.exports = {
+  Tag,
+  Tutorial,
+  sequelize,
+  Sequelize
+};

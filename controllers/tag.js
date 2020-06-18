@@ -1,10 +1,20 @@
-const { Tag } = require('../models');
+const { Tag, Tutorial } = require('../models');
 
 exports.createTag = (tagInfo) => {
-  Tag.create(tagInfo)
-    .then((tag) => console.log({
+  return Tag.create(tagInfo)
+    .then((tag) => ({
       message: 'Successfully created Tag',
       data: tag.get()
     }))
-    .catch((err) => console.log('Unable to create tag', err));
+    .catch((err) => console.log(err));
+};
+
+exports.addTutorial = (tagId, tutorialId) => {
+  Tag.findByPk(tagId)
+    .then((tag) => {
+      Tutorial.findByPk(tutorialId)
+        .then((tutorial) => tag.addTutorial(tutorial))
+        .catch((err) => console.log(err))
+    })
+    .catch((err) => console.log(err));
 };
