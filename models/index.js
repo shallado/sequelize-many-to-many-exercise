@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const tag = require('./tag');
+const tutorial = require('./tutorial');
 const {
   database,
   username,
@@ -22,4 +23,5 @@ sequelize.authenticate()
   .catch((err) => console.log('Unable to connect to the database', err));
 
 const Tag = tag(sequelize, Sequelize);
+const Tutorial = tutorial(sequelize, Sequelize);
 
