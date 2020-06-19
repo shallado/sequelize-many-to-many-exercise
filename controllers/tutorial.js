@@ -25,3 +25,20 @@ exports.findAllTutorials = () => {
     })
     .catch((err) => console.log('Error finding tutorials'));
 };
+
+exports.findTutorial = (tutorialId) => {
+  return Tutorial.findByPk(tutorialId, {
+    include: [{
+      model: Tag,
+      as: 'tags'
+    }]
+  })
+    .then((tutorial) => {
+      if (!tutorial) {
+        console.log('Unable to find a tutorial');
+      }
+
+      return tutorial.toJSON();
+    })
+    .catch((err) => console.log('Error finding a tutorial', err));
+};
