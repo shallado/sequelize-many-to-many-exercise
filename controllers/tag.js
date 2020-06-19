@@ -34,3 +34,20 @@ exports.findAllTags = () => {
     .then((tags) => tags.map((tag) => tag.get()))
     .catch((err) => console.log('Error finding tags', err));
 };
+
+exports.findTag = (tagId) => {
+  return Tag.findByPk(tagId, {
+    include: [{
+      model: Tutorial,
+      as: 'tutorials'
+    }]
+  })
+    .then((tag) => {
+      if (!tag) {
+        console.log('Unable to find the tag try again');
+      }
+
+      return tag.toJSON();
+    })
+    .catch((err) => console.log('Error finding a tag', err));
+};
