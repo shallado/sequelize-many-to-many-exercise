@@ -24,3 +24,13 @@ exports.addTutorial = (tagId, tutorialId) => {
     .catch((err) => console.log('Error finding tag data', err));
 };
 
+exports.findAllTags = () => {
+  return Tag.findAll({
+      include: [{
+        model: Tutorial,
+        as: 'tutorials'
+      }]
+    })
+    .then((tags) => tags.map((tag) => tag.get()))
+    .catch((err) => console.log('Error finding tags', err));
+};
